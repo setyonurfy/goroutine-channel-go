@@ -10,7 +10,7 @@ import (
 func TestWorkerPool(t *testing.T) {
 	got := WorkerPool(3, []int{1, 2, 3, 4, 5})
 
-	want := []int{1, 4, 8, 16, 30}
+	want := []int{1, 4, 9, 16, 25}
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("dapat %v, harusnya %v", got, want)
 	}
