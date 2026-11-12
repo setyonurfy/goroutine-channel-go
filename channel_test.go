@@ -48,6 +48,7 @@ func TestKuadrat(t *testing.T) {
 }
 
 func TestGenap(t *testing.T) {
+	// table driven test
 	tests := []struct {
 		nama  string
 		input []int
