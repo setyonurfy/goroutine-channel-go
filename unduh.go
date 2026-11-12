@@ -7,7 +7,7 @@ import (
 )
 
 func Unduh(id int) string {
-	time.Sleep(time.Duration(id) * 2 * time.Second)
+	time.Sleep(time.Duration(id) * 200 * time.Millisecond)
 	return fmt.Sprintf("File ke-%d selesai", id)
 }
 

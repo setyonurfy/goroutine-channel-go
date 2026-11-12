@@ -34,7 +34,7 @@ func TestUnduhSemua_Bersamaan(t *testing.T) {
 	UnduhSemua(5)
 	durasi := time.Since(mulai)
 
-	if durasi > 1500*time.Microsecond {
+	if durasi > 1500*time.Millisecond {
 		t.Errorf("terlalu lama (%v), sepertinya tidak berjalan bersamaan", durasi)
 	}
 }
