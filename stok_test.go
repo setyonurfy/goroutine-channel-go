@@ -3,6 +3,7 @@ package goroutine_go
 import (
 	"errors"
 	"sync"
+	"sync/atomic"
 	"testing"
 )
 
@@ -41,7 +42,7 @@ func TestSafeStok_KurangiBersamaan(t *testing.T) {
 	s := NewSafeStok()
 	s.Tambah("laptop", 10)
 
-	var berhasil SafeCounter
+	var berhasil atomic.Int64
 	var wg sync.WaitGroup
 
 	for i := 0; i < 50; i++ {
@@ -49,13 +50,13 @@ func TestSafeStok_KurangiBersamaan(t *testing.T) {
 		go func() {
 			defer wg.Done()
 			if err := s.Kurangi("laptop", 1); err == nil {
-				berhasil.Tambah()
+				berhasil.Add(1)
 			}
 		}()
 	}
 	wg.Wait()
 
-	if got := berhasil.Nilai(); got != 10 {
+	if got := berhasil.Load(); got != 10 {
 		t.Errorf("yang berhasil %d, harusnya 10", got)
 	}
 	if got := s.Cek("laptop"); got != 0 {
